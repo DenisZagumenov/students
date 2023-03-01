@@ -16,6 +16,7 @@ public class StudentsController extends HttpServlet {
 
         // Соединение с базой данных и получение данных
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_3?user=root&password=bhsSv9zD11");
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery("select * from student;");
@@ -26,7 +27,7 @@ public class StudentsController extends HttpServlet {
                 System.out.println(text);
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
