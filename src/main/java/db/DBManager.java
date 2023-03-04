@@ -53,4 +53,34 @@ public class DBManager {
         }
         return students;
     }
+
+    public static int getGroupId(String groupName) {
+        try {
+            ResultSet resultSet = statement.executeQuery(String.format("select id from groupp as g where g.group = " +
+                    "'%s';", groupName));
+            while (resultSet.next()) {
+                return resultSet.getInt(ID);
+            }
+            statement.execute(String.format("insert into `groupp` (`group`) values ('%s');", groupName));
+            resultSet = statement.executeQuery(String.format("select id from groupp as g where g.group = " +
+                    "'%s';", groupName));
+            while (resultSet.next()) {
+                return resultSet.getInt(ID);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Ошибка создания группы.");
+        }
+        return -1;
+    }
+
+    public static void createStudent (String surname, String name, int groupId, String date) {
+        try {
+            statement.execute(String.format("insert into `student` (`surname`, `name`, `id_group`, `date`) " +
+                    "values ('%s', '%s', '%d', '%s');", surname, name, groupId, date));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
