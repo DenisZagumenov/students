@@ -1,5 +1,6 @@
 package db;
 
+import entity.Discipline;
 import entity.Group;
 import entity.Student;
 
@@ -18,6 +19,7 @@ public class DBManager {
     private static final String NAME = "name";
     private static final String DATE = "date";
     private static final String GROUP = "group";
+    private static final String DISCIPLINE = "discipline";
 
     static {
         try {
@@ -81,6 +83,33 @@ public class DBManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
+    public static List<Discipline> getDisciplines() {
+        List<Discipline> disciplines = new ArrayList<>();
+        try{
+            ResultSet result = statement.executeQuery("select discipline.id, discipline " +
+                    "from discipline where status = '1';");
+            while (result.next()) {
+                Discipline discipline = new Discipline();
+                discipline.setId(result.getInt(ID));
+                discipline.setName(result.getString(DISCIPLINE));
+
+                disciplines.add(discipline);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return disciplines;
+    }
+
+    public static void createDiscipline (String name) {
+
+        try {
+            statement.execute(String.format("insert into `discipline` (`discipline`) values ('%s');", name));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
