@@ -18,7 +18,7 @@
             $( "#datepicker" ).datepicker();
         } );
     </script>
-  <title>Students Page</title>
+  <title>Students Create Page</title>
 </head>
 <body>
 <span>
