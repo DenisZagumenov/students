@@ -176,4 +176,41 @@ public class DBManager {
             e.printStackTrace();
         }
     }
+
+    public static Discipline getDisciplineById(String id) {
+
+        Discipline discipline = new Discipline();
+
+        try {
+            ResultSet resultSet = statement.executeQuery(String.format("select discipline.id, discipline " +
+                    "from discipline where discipline.id = %s;", id));
+
+            while (resultSet.next()) {
+                discipline.setId(resultSet.getInt(ID));
+                discipline.setName(resultSet.getString(DISCIPLINE));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return discipline;
+    }
+
+    public static void modifyDiscipline(String id, String name) {
+        try {
+            statement.execute(String.format("update discipline set discipline = '%s' where id = '%s';", name, id));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteDisciplines(String[] ids) {
+
+        try {
+            statement.execute(String.format("update `discipline` set `status` = '0' where id in (%s);",
+                    StringService.convertIdsIntoString(ids)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

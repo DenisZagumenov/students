@@ -40,9 +40,8 @@ public class StudentModifyController extends HttpServlet {
         }
 
         int groupId = DBManager.getGroupId(groupName);
-        String dateForDB = DateService.convertDateForDB(date);
 
-        DBManager.modifyStudent(id, surname, name, groupId, dateForDB);
+        DBManager.modifyStudent(id, surname, name, groupId, date);
         resp.sendRedirect("/students");
 
     }
