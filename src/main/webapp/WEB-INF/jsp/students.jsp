@@ -24,7 +24,9 @@
         </nav>
     </div>
     <div class="eeerrr">
-        <div class="e"><a href="studentProgress.html"><button class="e11"> Просмотреть успеваемость выбранных студентов</button></a></div>
+        <div class="e"><a>
+                <button onclick="studentProgress()" class="e11"> Просмотреть успеваемость выбранных студентов</button>
+        </a></div>
 
         <div class="ee">
             <a>
@@ -67,5 +69,8 @@
 </form>
 <form action="/student_modify" method="get" id="modifyForm">
     <input type="hidden" name="idsForModify" id="idsForModify">
+</form>
+<form action="/student_progress" method="get" id="ProgressForm">
+    <input type="hidden" name="idsForProgress" id="idsForProgress">
 </form>
 </html>

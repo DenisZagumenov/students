@@ -75,3 +75,23 @@ function deleteDiscipline() {
     document.getElementById("idsForDeleteDiscipline").value = ids;
     document.getElementById("deleteFormDiscipline").submit();
 }
+
+function studentProgress() {
+
+    const checkedCheckBoxes = document.querySelectorAll("input[name=studentId]:checked");
+
+    if (checkedCheckBoxes.length == 0) {
+        alert("Пожалуйста, выберите одного студента.");
+        return;
+    }
+
+    if (checkedCheckBoxes.length > 1) {
+        alert("Пожалуйста, выберите только одного студента.");
+        return;
+    }
+
+    let id = checkedCheckBoxes[0].value;
+
+    document.getElementById("idsForProgress").value = id;
+    document.getElementById("ProgressForm").submit();
+}
