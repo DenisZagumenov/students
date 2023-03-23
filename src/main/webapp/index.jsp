@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +14,15 @@
 <body>
 <span>
         <h1>Система управления студентами и их успеваемостью</h1>
-        <a class="Logout" href="">Logout</a>
+            <c:choose>
+                <c:when test="${isAuthorised eq true}">
+                    <p>Привет, ${login}</p>
+                    <a class="Logout" href="/logout">Logout</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="Logout" href="/login">Login</a>
+                </c:otherwise>
+            </c:choose>
     </span>
 
 <div class="a3">
