@@ -259,4 +259,22 @@ public class DBManager {
         }
         return grades;
     }
+
+    public static List<Discipline> getDisciplinesByTermId(String termId) {
+
+        List<Discipline> result = new ArrayList<>();
+        try {
+            ResultSet resultSet = statement.executeQuery(String.format("select discipline from term_discipline as td " +
+                    "left join discipline as d on td.id_discipline = d.id where id_term = '%s';", termId));
+
+            while (resultSet.next()) {
+                Discipline discipline = new Discipline();
+                discipline.setName(resultSet.getString(DISCIPLINE));
+                result.add(discipline);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }
