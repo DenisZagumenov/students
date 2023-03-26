@@ -18,8 +18,28 @@ public class TermsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Term> terms = DBManager.getTerm();
+        String termId = req.getParameter("termId");
+
+        List<Term> terms = DBManager.getAllActiveTerms();
+
+        Term selectedTerm = new Term();
+        if (termId != null && !termId.isEmpty()) {
+            for (Term term : terms) {
+                if (termId.equals(String.valueOf(term.getId()))) {
+                    selectedTerm = term;
+                    break;
+                }
+            }
+        } else {
+            selectedTerm = terms.get(0);
+        }
+
+        List<Discipline> disciplines = DBManager.getDisciplinesByTermId(String.valueOf(selectedTerm.getId()));
+
         req.setAttribute("terms", terms);
+        req.setAttribute("selectedTerm", selectedTerm);
+        req.setAttribute("disciplines", disciplines);
+        req.setAttribute("duration", selectedTerm.getDuration());
 
         req.getRequestDispatcher("WEB-INF/jsp/terms.jsp").forward(req, resp);
     }

@@ -13,7 +13,7 @@
     <title>Disciplines Page</title>
 </head>
 <body>
-<span>
+<span class="header">
         <h1>Система управления студентами и их успеваемостью</h1>
             <c:choose>
                 <c:when test="${isAuthorised eq true}">
@@ -36,14 +36,18 @@
     <div class="Table3">
         <table class="table3" border="1">
             <tr>
+                <c:if test="${role eq 1}"> <%--видимость кнопок только администратором--%>
                 <th></th>
+                </c:if>
                 <th>Наименование дисциплины</th>
             </tr>
             <c:forEach items="${disciplines}" var="d"> <%--Цикл для заполнения таблицы--%>
             <tr>
                 <form>
                     <label>
+                        <c:if test="${role eq 1}"> <%--видимость кнопок только администратором--%>
                         <td><input type="checkbox" value="${d.id}" name="disciplineId"></td>
+                        </c:if>
                         <td>${d.name}</td>
                     </label>
                 </form>
@@ -51,11 +55,13 @@
             </c:forEach>
         </table>
     </div>
-    <div class="button3">
-        <div class="button31"><a class="button311" href="/discipline_create"><button class="button3111">Создать дисциплину...</button></a></div>
-        <div class="button32"><a class="button322"><button onclick="modifyDiscipline()" class="button3222">Модифицировать выбранную дисциплину...</button></a></div>
-        <div class="button33"><a class="button333"><button onclick="deleteDiscipline()" class="button3333">Удалить выбранную дисциплину...</button></a></div>
-    </div>
+    <c:if test="${role eq 1}"> <%--видимость кнопок только администратором--%>
+        <div class="button3">
+            <div class="button31"><a class="button311" href="/discipline_create"><button class="button3111">Создать дисциплину...</button></a></div>
+            <div class="button32"><a class="button322"><button onclick="modifyDiscipline()" class="button3222">Модифицировать выбранную дисциплину...</button></a></div>
+            <div class="button33"><a class="button333"><button onclick="deleteDiscipline()" class="button3333">Удалить выбранную дисциплину...</button></a></div>
+        </div>
+    </c:if>
 </div>
 </body>
 <form action="/discipline_modify" method="get" id="modifyFormDiscipline">

@@ -12,7 +12,7 @@
     <title>Discipline Create Page</title>
 </head>
 <body>
-<span>
+<span class="header">
         <h1>Система управления студентами и их успеваемостью</h1>
             <c:choose>
                 <c:when test="${isAuthorised eq true}">

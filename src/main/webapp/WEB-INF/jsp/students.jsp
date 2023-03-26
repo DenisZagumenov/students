@@ -36,7 +36,7 @@
                 <button onclick="studentProgress()" class="e11"> Просмотреть успеваемость выбранных студентов</button>
         </a></div>
 
-<c:if test="${role eq 1}">
+<c:if test="${role eq 1}"> <%--видимость кнопок только администратором--%>
     <div class="ee">
         <a>
             <form action="/student_create" method="get">

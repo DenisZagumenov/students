@@ -95,3 +95,55 @@ function studentProgress() {
     document.getElementById("idsForProgress").value = id;
     document.getElementById("ProgressForm").submit();
 }
+
+function createTerm() {
+
+    //получим DOM элемента select по ID
+    var elm = document.getElementById("selectedDisciplines");
+    //в этот массив будем отбирать выбранные значения
+    var values = [];
+    //случай мульти-режима
+    if (elm.multiple) {
+        //перебираем массив опций
+        for (var i = 0; i < elm.options.length; i ++) {
+            //если опция выбрана - добавим её в массив
+            if (elm.options[i].selected)
+                values.push(elm.options[i].value);
+        }
+    //случай одиночного выбора в select
+    } else
+        values.push(elm.value);
+
+    //выведем результат в консоль
+    // console.log(values);
+
+    let duration = document.getElementById('durationDiscipline').value;
+
+    if (isNaN(duration)) {
+        alert("Введите только число");
+        return;
+    }
+
+    if (values.length == 0 || duration.length == 0) {
+        alert("Поля не должны быть пустыми");
+        return;
+    }
+    document.getElementById('duration').value = duration;
+    document.getElementById("idsSelectedDisciplines").value = values;
+    document.getElementById("disciplinesForTerm").submit();
+}
+
+function deleteTerm () {
+
+    var term = document.getElementById("selectedTerm");
+    var values;
+
+    if (term.options.selected) {
+        values = term.options.value;
+    } else {
+        values = 1;
+    }
+    document.getElementById("idsSelectedDisciplines").value = values;
+    document.getElementById("deleteTerm").submit();
+
+}
