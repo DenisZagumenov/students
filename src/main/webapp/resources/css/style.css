@@ -1,7 +1,7 @@
 body{
     background-color: #d7d5d3;
     font-family: cursive;
-    overflow: scroll; /* При переполнении страницы внизу браузера появляется прокрутка */ 
+    overflow: scroll; /* При переполнении страницы внизу браузера появляется прокрутка */
 }
 button{
     font-family: cursive;
@@ -14,21 +14,22 @@ h1{
     border: 1px;
     border-style: solid;
     width: 1000px;
-    margin-top: auto;    
+    margin-top: auto;
     text-align: center;
     background-color: #ffffff;
     font-weight: normal;
     font-size: 28px;
     padding-bottom: 0.15%;
-    
+
 }
 .header {
-    display: block;    
+    display: block;
     white-space: nowrap;
     width: 1000px;
+    height: 42px;
     margin-left: auto;
     margin-right: auto;
-    
+
 
 }
 th{
@@ -42,10 +43,29 @@ td{
     font-size: 14px;
     padding-left: 8px;
 }
-.Logout{ 
-    line-height: 350%;
+.Logout{
+
     font-family: 'Lucida Sans';
+    line-height: 0%;
+    padding-bottom: 0%;
     vertical-align: bottom;
+    padding: 0px;
+    display:inline-block;
+    border-style: none;
+    font-size: 15px;
+}
+
+.Hello {
+    margin: 0px;
+    font-family: 'Lucida Sans';
+    font-size: 15px;
+
+}
+
+.Login {
+    display: inline-block;
+    height: 42px;
+
 }
 
 table{
@@ -79,11 +99,12 @@ a{
 
 .a{
     display: inline-block;
-    vertical-align: top;    
+    vertical-align: top;
 }
 .eeerrr{
     display: inline-block;
-    margin-left: 9%;   
+    margin-left: 9%;
+    margin-top: 20px;
 }
 .e{
     display: inline-block;
@@ -116,9 +137,9 @@ a{
 .rr{
     display: inline-block;
     width: 400px;
-    
+
 }
-.r22{    
+.r22{
     line-height: 79%;
     width: 115.8%;
     padding: 9px;
@@ -127,7 +148,7 @@ caption{
     text-align: left;
     margin-bottom: 1%;
     font-size: 19px;
-} 
+}
 .studentsListTable{
     width: 1000px;
     margin-left: auto;
@@ -151,14 +172,21 @@ caption{
     width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    white-space: nowrap;       
+    white-space: nowrap;
 }
 .ST1 {
     width: 330px;
-    text-align: right; 
+    text-align: right;
 }
 .p1{
     margin-left: 6.5%;
+    display: inline-block;
+    text-align: left;
+    font-size: 21px;
+    padding-bottom: 1%;
+}
+.p5{
+    margin-left: 350px;
     display: inline-block;
     text-align: left;
     font-size: 21px;
@@ -173,7 +201,7 @@ caption{
 }
 .table1 th{
     height: 30px;
-    
+
 }
 .table1 td{
     height: 30px;
@@ -196,11 +224,11 @@ caption{
     white-space: nowrap;
 }
 .qqq{
-    display: inline-block;    
+    display: inline-block;
     width: 400px;
 }
-.table2{ 
-    
+.table2{
+
     width: 100%;
 }
 
@@ -209,7 +237,7 @@ caption{
 }
 
 .Select{
-    display: inline-block;    
+    display: inline-block;
     width: 550px;
     margin-left: 80px;
     font-size: 21px;
@@ -224,11 +252,11 @@ caption{
 /* Student Modifying */
 /* Student Creating */
 
-.input1{   
+.input1{
     margin-bottom: 1.1%;
 }
 .input2{
-    
+
     margin-bottom: 1.1%;
 }
 .input3{
@@ -240,6 +268,9 @@ caption{
 .button2{
     margin-left: 27.95%;
 }
+.select3 {
+    width: 171px;
+}
 
 /* Title Page */
 .a3{
@@ -247,7 +278,7 @@ caption{
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;
-    display: block;    
+    display: block;
     white-space: nowrap;
 }
 .a3_1{
@@ -321,7 +352,7 @@ caption{
 
 /* Discipline Creating */
 /* Discipline Modifying */
-.input11{    
+.input11{
     margin-bottom: 1.1%;
 }
 .label1{
@@ -390,7 +421,7 @@ caption{
     line-height: 200%;
 }
 /* Term Creating */
-.input22{    
+.input22{
     margin-bottom: 1.1%;
 }
 .input222{
@@ -398,7 +429,7 @@ caption{
     margin-left: 0.5%;
     margin-bottom: 1.1%;
 }
-.label22{    
+.label22{
     margin-bottom: 1.3%;
 }
 .label2{
@@ -427,5 +458,4 @@ caption{
     color: #ff0000;
     margin-left: 18%;
     margin-top: 2%;
-    
 }

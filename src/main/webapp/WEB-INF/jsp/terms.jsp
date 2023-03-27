@@ -14,17 +14,19 @@
 </head>
 <body>
 <span class="header">
-        <h1>Система управления студентами и их успеваемостью</h1>
+    <h1>Система управления студентами и их успеваемостью</h1>
+        <div class="Login">
             <c:choose>
                 <c:when test="${isAuthorised eq true}">
-                    <p>Привет, ${login}</p>
+                    <p class="Hello">Привет, ${login}</p>
                     <a class="Logout" href="/logout">Logout</a>
                 </c:when>
                 <c:otherwise>
                     <a class="Logout" href="/login">Login</a>
                 </c:otherwise>
             </c:choose>
-    </span>
+        </div>
+</span>
 <header>
     <nav>
         <a href="/">На главную</a>
@@ -81,13 +83,16 @@
                     <button class="button5111">Создать семестр...</button>
                 </form>
             </a></div>
-            <div class="button52"><a class="button522" href="termModifying.html">
+            <form action="/term_modify" method="get">
+            <div class="button52"><a class="button522">
                 <button class="button5222">Модифицировать текущий семестр...</button>
+                <input type="hidden" name="idTerm" value="${selectedTerm.id}"/>
             </a></div>
+            </form>
             <div class="button53"><a class="button533">
-<%--                <button onclick="deleteTerm()" class="button5333">Удалить текущий семестр...</button>--%>
                 <form action="/term_delete" method="post">
-                <button class="button5333">Удалить текущий семестр...</button>
+                    <button class="button5333">Удалить текущий семестр...</button>
+                        <input type="hidden" name="idTerm" value="${selectedTerm.id}"/>
                 </form>
             </a></div>
         </div>

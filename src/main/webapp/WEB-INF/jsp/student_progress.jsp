@@ -13,19 +13,20 @@
     <title>Students Progress</title>
 </head>
 <body>
-<div class="header">
+<span class="header">
     <h1>Система управления студентами и их успеваемостью</h1>
-    <c:choose>
-        <c:when test="${isAuthorised eq true}">
-            <p>Привет, ${login}</p>
-            <a class="Logout" href="/logout">Logout</a>
-        </c:when>
-        <c:otherwise>
-            <a class="Logout" href="/login">Login</a>
-        </c:otherwise>
-    </c:choose>
-</div>
-
+        <div class="Login">
+            <c:choose>
+                <c:when test="${isAuthorised eq true}">
+                    <p class="Hello">Привет, ${login}</p>
+                    <a class="Logout" href="/logout">Logout</a>
+                </c:when>
+                <c:otherwise>
+                    <a class="Logout" href="/login">Login</a>
+                </c:otherwise>
+            </c:choose>
+        </div>
+</span>
 <div class="navP">
     <nav>
         <a href="/">На главную</a>

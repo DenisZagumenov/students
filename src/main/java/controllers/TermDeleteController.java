@@ -17,7 +17,7 @@ public class TermDeleteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String selectedTerm = req.getParameter("termId");
+        String selectedTerm = req.getParameter("idTerm");
 
         DBManager.deleteTerm(selectedTerm);
         resp.sendRedirect("/terms");
