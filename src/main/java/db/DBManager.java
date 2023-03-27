@@ -337,4 +337,21 @@ public class DBManager {
         }
     }
 
+    public static void modifyTerm(String duration, String[] ids, String idTerm) {
+
+        try {
+            statement.execute(String.format("update `term` SET `duration` = '%s недель' where (id = '%s');",
+                    duration, idTerm));
+            statement.execute(String.format("DELETE FROM `term_discipline` WHERE (`id_term` = '%s');", idTerm));
+            for (String id : ids) {
+                statement.execute(String.format("insert into `term_discipline` (`id_term`, `id_discipline`) values ('%s', '%s');",
+                        idTerm, id));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

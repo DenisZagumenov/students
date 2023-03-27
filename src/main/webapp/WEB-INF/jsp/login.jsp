@@ -20,27 +20,30 @@
     </script>
 </head>
 <body>
-<span>
+    <span class="header">
         <h1>Система управления студентами и их успеваемостью</h1>
     </span>
 <div class="navP">
-    <p class="p1">Вход в систему</p>
+    <p class="p5">Вход в систему</p>
 </div>
-<form action="/login" method="post">
-    <div class="input1"><label>Логин <input type="text" name="login"></label></div>
-    <div class="input2"><label>Пароль <input type="text" name="password"></label></div>
-    <div class="input3"><label>Права
-        <select name="roleId">
-            <c:forEach items="${roles}" var="r">
-                <option value="${r.id}">${r.name}</option>
-            </c:forEach>
-        </select>
-    </label></div>
-    <div class="button2">
-        <button>Войти</button>
+    <div class="ST"> <!-- добавить контейнер -->
+        <div class="ST1">
+            <form action="/login" method="post">
+                <div class="input1"><label>Логин <input type="text" name="login"></label></div>
+                <div class="input2"><label>Пароль <input type="text" name="password"></label></div>
+                <div class="input3"><label>Права
+                    <select name="roleId" class="select3">
+                        <c:forEach items="${roles}" var="r">
+                            <option value="${r.id}">${r.name}</option>
+                        </c:forEach>
+                    </select>
+                </label></div>
+                <div class="button2">
+                    <button>Войти</button>
+                </div>
+            </form>
+        </div>
     </div>
-</form>
-
 <c:if test="${error eq 1}">
     <h4 class="p4">Ошибка во введённых данных!</h4>
 </c:if>

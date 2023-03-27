@@ -13,17 +13,19 @@
 </head>
 <body>
 <span class="header">
-        <h1>Система управления студентами и их успеваемостью</h1>
+    <h1>Система управления студентами и их успеваемостью</h1>
+        <div class="Login">
             <c:choose>
                 <c:when test="${isAuthorised eq true}">
-                    <p>Привет, ${login}</p>
+                    <p class="Hello">Привет, ${login}</p>
                     <a class="Logout" href="/logout">Logout</a>
                 </c:when>
                 <c:otherwise>
                     <a class="Logout" href="/login">Login</a>
                 </c:otherwise>
             </c:choose>
-    </span>
+        </div>
+</span>
 <div class="navP">
     <nav>
         <a href="/">На главную</a>
@@ -31,12 +33,14 @@
     </nav>
     <p class="p1">Для того чтобы создать новую дисциплину заполните все поля и нажмите "Создать":</p>
 </div>
-<div>
-    <form action="/discipline_create" method="post"> <%--Указать ссылку и метод--%>
-    <div class="input11"><label class="label1">Название
-        <input name="discipline" class="input111" type="text"></label></div> <%--Прописать name для input--%>
-    <div class="button4"><button>Создать</button></div>
-    </form>
+<div class="ST">
+        <div class="ST1">
+        <form action="/discipline_create" method="post"> <%--Указать ссылку и метод--%>
+            <div class="input11"><label class="label1">Название
+                <input name="discipline" class="input111" type="text"></label></div> <%--Прописать name для input--%>
+            <div class="button4"><button>Создать</button></div>
+        </form>
+    </div>
 </div>
 <c:if test="${error eq 1}"> <%--Ошибка при отправке пустого поля--%>
     <h4 class="p4">Поля не должны быть пустыми</h4>

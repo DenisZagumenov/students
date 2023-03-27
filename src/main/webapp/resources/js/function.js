@@ -132,18 +132,3 @@ function createTerm() {
     document.getElementById("idsSelectedDisciplines").value = values;
     document.getElementById("disciplinesForTerm").submit();
 }
-
-function deleteTerm () {
-
-    var term = document.getElementById("selectedTerm");
-    var values;
-
-    if (term.options.selected) {
-        values = term.options.value;
-    } else {
-        values = 1;
-    }
-    document.getElementById("idsSelectedDisciplines").value = values;
-    document.getElementById("deleteTerm").submit();
-
-}

@@ -22,17 +22,19 @@
 </head>
 <body>
 <span class="header">
-        <h1>Система управления студентами и их успеваемостью</h1>
+    <h1>Система управления студентами и их успеваемостью</h1>
+        <div class="Login">
             <c:choose>
                 <c:when test="${isAuthorised eq true}">
-                    <p>Привет, ${login}</p>
+                    <p class="Hello">Привет, ${login}</p>
                     <a class="Logout" href="/logout">Logout</a>
                 </c:when>
                 <c:otherwise>
                     <a class="Logout" href="/login">Login</a>
                 </c:otherwise>
             </c:choose>
-    </span>
+        </div>
+</span>
 <div class="navP">
   <nav>
     <a href="/">На главную</a>

@@ -12,19 +12,20 @@
     <title>Title Page</title>
 </head>
 <body>
-<span>
-        <h1>Система управления студентами и их успеваемостью</h1>
+<span class="header">
+    <h1>Система управления студентами и их успеваемостью</h1>
+        <div class="Login">
             <c:choose>
                 <c:when test="${isAuthorised eq true}">
-                    <p>Привет, ${login}</p>
+                    <p class="Hello">Привет, ${login}</p>
                     <a class="Logout" href="/logout">Logout</a>
                 </c:when>
                 <c:otherwise>
                     <a class="Logout" href="/login">Login</a>
                 </c:otherwise>
             </c:choose>
-    </span>
-
+        </div>
+</span>
 <div class="a3">
     <a class="a3_1" href="/students">Студенты</a>
     <a class="a3_2" href="/disciplines">Дисциплины</a>
