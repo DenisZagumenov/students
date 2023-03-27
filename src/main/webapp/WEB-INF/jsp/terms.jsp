@@ -9,10 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../resources/css/style.css">
+    <script src="../../resources/js/function.js" ></script>
     <title>Terms Page</title>
 </head>
 <body>
-<span>
+<span class="header">
         <h1>Система управления студентами и их успеваемостью</h1>
             <c:choose>
                 <c:when test="${isAuthorised eq true}">
@@ -31,17 +32,28 @@
 </header>
 
 <div class="Select1">
-    <label>
-        Выбрать семестр
-        <select class="select1">
-            <c:forEach items="${terms}" var="t"> <%--Цикл для заполнения таблицы--%>
-            <option>${t.name}</option>
-            </c:forEach>
-        </select>
-    </label>
-    <button class="button1">Выбрать</button>
+    <form action="/terms">
+        <label>
+            Выбрать семестр
+            <select class="select1" name="termId">
+                <c:forEach items="${terms}" var="t"> <%--При первом открытии страницы показать первый семестр, затем запомнить выбранный--%>
+                    <c:choose>
+                        <c:when test="${t.id == selectedTerm.id}">
+                            <option selected value="${t.id}">${t.name} </option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="${t.id}">${t.name} </option>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </select>
+        </label>
+        <button class="button1">Выбрать</button>
+        <input type="hidden" name="selectedTerm" value="${selectedTerm.id}"/>
+    </form>
+    <input type="hidden" name="iDselectedTerm" value="${selectedTerm.id}"/>
     <br>
-    <p>Длительность семестра: 24 недели</p>
+    <p>Длительность семестра: ${duration}</p>
 </div>
 
 <div class="tableButton1">
@@ -51,27 +63,38 @@
             <tr>
                 <th>Наименование дисциплины</th>
             </tr>
-            <tr>
-                <form>
-                    <label>
-                        <td></td>
-                    </label>
-                </form>
-            </tr>
+            <c:forEach items="${disciplines}" var="d">
+                <tr>
+                    <form>
+                        <label>
+                            <td>${d.name}</td>
+                        </label>
+                    </form>
+                </tr>
+            </c:forEach>
         </table>
-
     </div>
-    <div class="button5">
-        <div class="button51"><a class="button511" href="termCreating.html">
-            <button class="button5111">Создать семестр...</button>
-        </a></div>
-        <div class="button52"><a class="button522" href="termModifying.html">
-            <button class="button5222">Модифицировать текущий семестр...</button>
-        </a></div>
-        <div class="button53"><a class="button533" href="">
-            <button class="button5333">Удалить текущий семестр...</button>
-        </a></div>
-    </div>
+    <c:if test="${role eq 1}"> <%--видимость кнопок только администратором--%>
+        <div class="button5">
+            <div class="button51"><a class="button511">
+                <form action="/term_create" method="get">
+                    <button class="button5111">Создать семестр...</button>
+                </form>
+            </a></div>
+            <div class="button52"><a class="button522" href="termModifying.html">
+                <button class="button5222">Модифицировать текущий семестр...</button>
+            </a></div>
+            <div class="button53"><a class="button533">
+<%--                <button onclick="deleteTerm()" class="button5333">Удалить текущий семестр...</button>--%>
+                <form action="/term_delete" method="post">
+                <button class="button5333">Удалить текущий семестр...</button>
+                </form>
+            </a></div>
+        </div>
+    </c:if>
 </div>
+<form action="/term_delete" method="post" id="deleteTerm">
+    <input type="hidden" name="idForDeleteTerm" id="idForDeleteTerm">
+</form>
 </body>
 </html>

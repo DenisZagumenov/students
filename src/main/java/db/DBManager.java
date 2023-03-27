@@ -23,7 +23,6 @@ public class DBManager {
     private static final String DURATION = "duration";
     private static final String GRADE = "grade";
     private static final String  DISCIPLINE_ID = "id_discipline";
-
     private static final String ROLE = "role";
 
 
@@ -91,7 +90,7 @@ public class DBManager {
         }
     }
 
-    public static List<Discipline> getDisciplines() {
+    public static List<Discipline> getAllActiveDisciplines() {
         List<Discipline> disciplines = new ArrayList<>();
         try {
             ResultSet result = statement.executeQuery("select discipline.id, discipline " +
@@ -116,25 +115,6 @@ public class DBManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static List<Term> getTerm() {
-
-        List<Term> terms = new ArrayList<>();
-        try {
-            ResultSet result = statement.executeQuery("select term.id, term, duration from term where status = '1';");
-            while (result.next()) {
-                Term term = new Term();
-                term.setId(result.getInt(ID));
-                term.setName(result.getString(TERM));
-                term.setDuration(result.getString(DURATION));
-
-                terms.add(term);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return terms;
     }
 
     public static void deleteStudents(String[] ids) {
@@ -219,12 +199,13 @@ public class DBManager {
     public static List<Term> getAllActiveTerms() {
         List<Term> terms = new ArrayList<>();
         try {
-            ResultSet result = statement.executeQuery("SELECT id, term FROM term WHERE status = '1';");
+            ResultSet result = statement.executeQuery("SELECT id, term, duration FROM term WHERE status = '1';");
 
             while (result.next()) {
                 Term term = new Term();
                 term.setId(result.getInt(ID));
                 term.setName(result.getString(TERM));
+                term.setDuration(result.getString(DURATION));
 
                 terms.add(term);
             }
@@ -312,4 +293,48 @@ public class DBManager {
         }
         return false;
     }
+
+    public static void createTerm(String duration, String[] ids) {
+
+        try {
+
+            statement.execute(String.format("insert into `term` (`duration`) values ('%s недель');", duration));
+            int getLastIdTerms = getLastIdTerms();
+            statement.execute(String.format("update `term`set `term`='Семестр %d' where id in (%d);",
+                    getLastIdTerms, getLastIdTerms));
+            for (String id : ids) {
+                statement.execute(String.format("insert into `term_discipline` (`id_term`, `id_discipline`) values ('%d', '%s');",
+                        getLastIdTerms, id));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int getLastIdTerms() {
+
+        int count = 0;
+        try {
+            ResultSet result = statement.executeQuery("SELECT id FROM term;");
+
+            while (result.next()) {
+                count = result.getInt(ID);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    public static void deleteTerm(String id) {
+
+        try {
+            statement.execute(String.format("UPDATE `term` SET `status` = '0' WHERE (`id` = '%s');", id));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
