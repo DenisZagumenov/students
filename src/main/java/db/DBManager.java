@@ -29,7 +29,7 @@ public class DBManager {
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_3?user=root&password=bhsSv9zD11");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/students_3?user=root&password=584435");
             statement = connection.createStatement();
         } catch (Exception e) {
             e.printStackTrace();
